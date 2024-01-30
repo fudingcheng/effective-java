@@ -36,6 +36,9 @@ public class NutritionFacts {
                 '}';
     }
 
+    /**
+     * 构建器
+     */
     public static class Builder {
         // Required parameters
         private final int servingSize;
@@ -47,10 +50,19 @@ public class NutritionFacts {
         private int sodium = 0;
         private int carbohydrate = 0;
 
+        /**
+         * 构建器的有参构造中的参数,是对象的必须属性
+         * @param servingSize
+         * @param servings
+         */
         public Builder(int servingSize, int servings) {
             this.servingSize = servingSize;
             this.servings = servings;
         }
+
+        /**
+         * 其他的方式是在封装非必须变量
+         */
 
         public Builder calories(int val) {
             calories = val;
@@ -72,7 +84,7 @@ public class NutritionFacts {
             return this;
         }
 
-        // 真正在创建对象
+        // 创建对象并返回
         public NutritionFacts build() {
             return new NutritionFacts(this);
         }

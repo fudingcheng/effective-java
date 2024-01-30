@@ -1,6 +1,8 @@
 package effectivejava.chapter2.item3.field;
 
-// Singleton with public final field  (Page 17)
+/**
+ * 使用静态域实现单例模式
+ */
 public class Elvis {
     public static final Elvis INSTANCE = new Elvis();
 
