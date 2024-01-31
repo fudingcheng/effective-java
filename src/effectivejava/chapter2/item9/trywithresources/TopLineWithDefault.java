@@ -6,7 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class TopLineWithDefault {
-    // try-with-resources with a catch clause  (Page 36)
+    /**
+     * try-with-resources中依然可以使用catch,通常用catch处理默认值
+     *
+     * @param path
+     * @param defaultVal
+     * @return
+     */
     static String firstLineOfFile(String path, String defaultVal) {
         try (BufferedReader br = new BufferedReader(
                 new FileReader(path))) {

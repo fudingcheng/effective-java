@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class TopLine {
-    // try-finally - No longer the best way to close resources! (page 34)
+
     static String firstLineOfFile(String path) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(path));
         try {

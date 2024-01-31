@@ -5,11 +5,14 @@ import java.io.*;
 public class Copy {
     private static final int BUFFER_SIZE = 8 * 1024;
 
-    // try-finally is ugly when used with more than one resource! (Page 34)
+
     static void copy(String src, String dst) throws IOException {
         InputStream in = new FileInputStream(src);
         try {
             OutputStream out = new FileOutputStream(dst);
+            /**
+             * 多个需要关闭资源嵌套时,会导致代码非常混乱
+             */
             try {
                 byte[] buf = new byte[BUFFER_SIZE];
                 int n;

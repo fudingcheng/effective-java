@@ -5,9 +5,15 @@ import java.io.*;
 public class Copy {
     private static final int BUFFER_SIZE = 8 * 1024;
 
-    // try-with-resources on multiple resources - short and sweet (Page 35)
+    /**
+     * 使用try...with...resources处理多个资源
+     *
+     * @param src
+     * @param dst
+     * @throws IOException
+     */
     static void copy(String src, String dst) throws IOException {
-        try (InputStream   in = new FileInputStream(src);
+        try (InputStream in = new FileInputStream(src);
              OutputStream out = new FileOutputStream(dst)) {
             byte[] buf = new byte[BUFFER_SIZE];
             int n;
