@@ -21,22 +21,27 @@ public final class CaseInsensitiveString {
         list.add(cis);
 
         System.out.println(list.contains(s));
+
+
     }
 
-    // Broken - violates symmetry!
+//    // Broken - violates symmetry!
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o instanceof CaseInsensitiveString)
+//            return s.equalsIgnoreCase(
+//                    ((CaseInsensitiveString) o).s);
+//        if (o instanceof String)  // One-way interoperability!
+//            return s.equalsIgnoreCase((String) o);
+//        return false;
+//    }
+
+    // Fixed equals method (Page 40)
     @Override
     public boolean equals(Object o) {
-        if (o instanceof CaseInsensitiveString)
-            return s.equalsIgnoreCase(
-                    ((CaseInsensitiveString) o).s);
-        if (o instanceof String)  // One-way interoperability!
-            return s.equalsIgnoreCase((String) o);
-        return false;
+        return o instanceof CaseInsensitiveString &&
+                ((CaseInsensitiveString) o).s.equalsIgnoreCase(s);
     }
 
-//    // Fixed equals method (Page 40)
-//    @Override public boolean equals(Object o) {
-//        return o instanceof CaseInsensitiveString &&
-//                ((CaseInsensitiveString) o).s.equalsIgnoreCase(s);
-//    }
+
 }

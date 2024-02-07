@@ -1,21 +1,37 @@
 package effectivejava.chapter3.item13;
+
 import java.util.Arrays;
 
-// A cloneable version of Stack (Pages 60-61)
+/**
+ * 克隆的最佳实践:对数组的克隆
+ */
 public class Stack implements Cloneable {
+    private static final int DEFAULT_INITIAL_CAPACITY = 16;
     private Object[] elements;
     private int size = 0;
-    private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
     public Stack() {
         this.elements = new Object[DEFAULT_INITIAL_CAPACITY];
+    }
+
+    // To see that clone works, call with several command line arguments
+    public static void main(String[] args) {
+        Stack stack = new Stack();
+        for (String arg : args)
+            stack.push(arg);
+        Stack copy = stack.clone();
+        while (!stack.isEmpty())
+            System.out.print(stack.pop() + " ");
+        System.out.println();
+        while (!copy.isEmpty())
+            System.out.print(copy.pop() + " ");
     }
 
     public void push(Object e) {
         ensureCapacity();
         elements[size++] = e;
     }
-    
+
     public Object pop() {
         if (size == 0)
             throw new EmptyStackException();
@@ -25,11 +41,12 @@ public class Stack implements Cloneable {
     }
 
     public boolean isEmpty() {
-        return size ==0;
+        return size == 0;
     }
 
     // Clone method for class with references to mutable state
-    @Override public Stack clone() {
+    @Override
+    public Stack clone() {
         try {
             Stack result = (Stack) super.clone();
             result.elements = elements.clone();
@@ -43,18 +60,5 @@ public class Stack implements Cloneable {
     private void ensureCapacity() {
         if (elements.length == size)
             elements = Arrays.copyOf(elements, 2 * size + 1);
-    }
-    
-    // To see that clone works, call with several command line arguments
-    public static void main(String[] args) {
-        Stack stack = new Stack();
-        for (String arg : args)
-            stack.push(arg);
-        Stack copy = stack.clone();
-        while (!stack.isEmpty())
-            System.out.print(stack.pop() + " ");
-        System.out.println();
-        while (!copy.isEmpty())
-            System.out.print(copy.pop() + " ");
     }
 }
