@@ -27,8 +27,7 @@ public final class PhoneNumber {
     }
 
 
-    // Broken with no hashCode; works with any of the three below
-
+    // 必须要覆盖hashCode方法,否则set数据后,get方法返回的有可能是null
     // Typical hashCode method (Page 52)
     @Override public int hashCode() {
         int result = Short.hashCode(areaCode);
